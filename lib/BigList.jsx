@@ -853,7 +853,7 @@ class BigList extends PureComponent {
    * Component did mount.
    */
   componentDidMount() {
-    const { stickySectionHeadersEnabled, nativeOffsetValues } = this.props;
+    const { stickySectionHeadersEnabled, nativeOffsetValues, initialSectionIndex } = this.props;
     const scrollView = this.getNativeScrollRef();
     if (
       stickySectionHeadersEnabled &&
@@ -875,6 +875,9 @@ class BigList extends PureComponent {
           },
         },
       ]);
+    }
+    if (initialSectionIndex) {
+      this.scrollToSection({section: initialSectionIndex, animated: true})
     }
   }
 
@@ -933,6 +936,7 @@ class BigList extends PureComponent {
       placeholderComponent,
       sections,
       initialScrollIndex,
+      initialSectionIndex,
       columnWrapperStyle,
       renderHeader,
       renderFooter,
@@ -1127,6 +1131,7 @@ BigList.propTypes = {
   refreshing: PropTypes.bool,
   scrollEventThrottle: PropTypes.number,
   initialScrollIndex: PropTypes.number,
+  initialSectionIndex: PropTypes.number,
   hideMarginalsOnEmpty: PropTypes.bool,
   sectionFooterHeight: PropTypes.oneOfType([
     PropTypes.string,
