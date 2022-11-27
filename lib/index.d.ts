@@ -41,6 +41,7 @@ interface BigListProps<ItemT>
       | "columnWrapperStyle"
       | "refreshing"
       | "initialScrollIndex"
+      | "initialSectionIndex"
       | "removeClippedSubviews"
     >,
     Pick<
